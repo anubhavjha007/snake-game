@@ -9,7 +9,6 @@ const reset = document.querySelector(".reset");
 const yourScore = document.querySelector(".yourScore");
 const liveScore = document.querySelector(".liveScore");
 const gameOverBox= document.querySelector(".gameOverBox");
-const body = document.querySelector("body");
 
 const board = document.querySelector(".board");
 
@@ -40,10 +39,12 @@ const food = ()=>{
   console.log(randFood);
   foodBox = boxes[randFood];
   foodBox.classList.add("food");
+ 
 }
 food();
-
-
+if (randFood === randIndex || snakeLengthArr.includes(randFood)) {
+    food();
+}
 
 const rightBoundArr=[];
 const leftBoundArr=[];
@@ -227,11 +228,11 @@ reset.addEventListener("click" , ()=>{
 let startX , startY , endX , endY , dX , dY ;
 
 
-body.addEventListener("touchstart" , (e)=>{
+board.addEventListener("touchstart" , (e)=>{
     startX = Math.abs(e.touches[0].clientX);
     startY = Math.abs(e.touches[0].clientY);   
 });
-body.addEventListener("touchend", (e) => {
+board.addEventListener("touchend", (e) => {
     endX = Math.abs(e.changedTouches[0].clientX);
     endY = Math.abs(e.changedTouches[0].clientY);
 
