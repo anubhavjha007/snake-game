@@ -1,0 +1,84 @@
+*{
+    padding :0px;
+    margin : 0px;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(4, 130, 255, 0.181);
+    min-height: 100dvh;
+    touch-action: none;
+}
+.board{
+    width: 90vmin;
+    height: 92vmin;
+    display: grid;
+    grid-template-columns: repeat(20 , 1fr);
+    grid-template-rows: repeat(20 , 1fr);
+    /* border-top: 15px solid red;
+    border-bottom: 15px solid red; */
+    background-image: url(abstract-bright-green-square-pixel-tile-mosaic-wall-background-texture_1258-72158.avif);
+    opacity:80%;
+   box-shadow: 5px 5px 5px red, -3px -3px 5px blue;
+
+
+    
+    
+}
+.box{
+    width: 100%;
+    height: 100%;
+    border: 0.1px solid black;
+}
+.snakeHead{
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+}
+.food{
+    width: 100%;
+    height: 100%;
+    background-image: url(pngtree-summer-cartoon-fruit-apple-png-download-apple-snake-fruit-red-apple-png-image_501550.jpg);
+    background-size:cover;
+    background-repeat: 0;
+    
+}
+.nofood{
+    width: 100%;
+    height: 100%;
+    background-color: none;
+}
+
+
+.gameOverBox{
+    display: none;
+    flex-direction: column;
+    height : 17em;
+    width: 100%; 
+    /* border: 2px solid black; */
+    margin-top: 0.3rem;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+    box-shadow: 5px 5px 5px red, -3px -3px 5px blue;
+    margin-bottom: 2em;
+    background-color: bisque;
+}
+.yourScore , .liveScore{
+    display: flex;
+    font-size: larger;
+    font-weight: bolder;
+    justify-content: center;
+    align-items: center;
+    
+}
+.reset{
+    height: 120px;
+    width: 280px;
+    background-image: url(red-pixel-retro-play-again-button-video-games-navigation-web-design-yellow-background-square-vector-icon-141866214.jpg);
+    background-size:cover;
+    
+
+}
+
