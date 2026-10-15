@@ -9,6 +9,7 @@ const reset = document.querySelector(".reset");
 const yourScore = document.querySelector(".yourScore");
 const liveScore = document.querySelector(".liveScore");
 const gameOverBox= document.querySelector(".gameOverBox");
+const body = document.querySelector("body");
 
 const board = document.querySelector(".board");
 
@@ -228,11 +229,11 @@ reset.addEventListener("click" , ()=>{
 let startX , startY , endX , endY , dX , dY ;
 
 
-board.addEventListener("touchstart" , (e)=>{
+body.addEventListener("touchstart" , (e)=>{
     startX = Math.abs(e.touches[0].clientX);
     startY = Math.abs(e.touches[0].clientY);   
 });
-board.addEventListener("touchend", (e) => {
+body.addEventListener("touchend", (e) => {
     endX = Math.abs(e.changedTouches[0].clientX);
     endY = Math.abs(e.changedTouches[0].clientY);
 
