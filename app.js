@@ -9,7 +9,7 @@ const reset = document.querySelector(".reset");
 const yourScore = document.querySelector(".yourScore");
 const liveScore = document.querySelector(".liveScore");
 const gameOverBox= document.querySelector(".gameOverBox");
-const body = document.querySelector("body");
+
 const board = document.querySelector(".board");
 
 const boxes =[];
@@ -73,24 +73,32 @@ rightBtn.addEventListener("pointerdown" , ()=>{
 });*/
 document.addEventListener("keydown" , rightMove = (event)=>{
     if(event.key==="ArrowRight" || event.key==="d" || event.key==="D"){
+         if(direction!=="left"){
         direction="right";
+        }
     }
 })
 document.addEventListener("keydown" , leftMove= (event)=>{
     if(event.key==="ArrowLeft" || event.key==="a" || event.key==="A"){
-       direction="left";
+       if(direction!=="right"){
+        direction="left";
+       }
     }
 })
 document.addEventListener("keydown" ,upMove= (event)=>{
     event.preventDefault();
     if(event.key==="ArrowUp" || event.key==="w" || event.key==="W"){
-       direction="up";
+       if(direction!=="down"){
+        direction="up";
+       }
     }
 })
 document.addEventListener("keydown" , downMove = (event)=>{
     event.preventDefault();
     if(event.key==="ArrowDown" || event.key==="s" || event.key==="S"){
-       direction="down";
+       if(direction!=="up"){
+        direction="down";
+       }
     }
 
 })
@@ -112,7 +120,7 @@ let motion = setInterval(() => {
 
     if(direction === "right"){
           
-         if (rightBoundArr.includes(randIndex)) {
+         if (rightBoundArr.includes(randIndex) || direction=="left") {
             gameOver();
             return;
          }
@@ -218,11 +226,11 @@ reset.addEventListener("click" , ()=>{
 let startX , startY , endX , endY , dX , dY ;
 
 
-body.addEventListener("touchstart" , (e)=>{
+board.addEventListener("touchstart" , (e)=>{
     startX = Math.abs(e.touches[0].clientX);
     startY = Math.abs(e.touches[0].clientY);   
 });
-body.addEventListener("touchend", (e) => {
+board.addEventListener("touchend", (e) => {
     endX = Math.abs(e.changedTouches[0].clientX);
     endY = Math.abs(e.changedTouches[0].clientY);
 
@@ -234,9 +242,26 @@ body.addEventListener("touchend", (e) => {
     return;
     }
     if (Math.abs(dX)>Math.abs(dY)) {
-    direction = dX > 0 ? "right" : "left" ;
+    // direction = dX > 0 ? "right" : "left" ;
+     if(dX>0){
+        if(direction!=="left"){
+            direction="right";
+        }
+        
+     }else if(direction!=="right"){
+            direction="left";
+        }
     } else {
-    direction = dY > 0 ? "down" : "up";
-}
+    // direction = dY > 0 ? "down" : "up";
+    if(dY>0){
+        if(direction!=="up"){
+            direction="down";
+        }
+    }else{
+        if(direction!=="down"){
+            direction="up";
+        }
+    }
+    }
 });
 
