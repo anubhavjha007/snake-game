@@ -181,7 +181,7 @@ let motion = setInterval(() => {
         selfKill();
     }
 
-}, 150);
+}, 100);
 
 
 const scoreInc = ()=>{
