@@ -183,7 +183,7 @@ let motion = setInterval(() => {
         selfKill();
     }
 
-}, 150);
+}, 130);
 
 
 const scoreInc = ()=>{
@@ -228,10 +228,13 @@ reset.addEventListener("click" , ()=>{
 // touch controls for touch screen devices 
 let startX , startY , endX , endY , dX , dY ;
 
-
+let newPosX , newPosY
 body.addEventListener("touchstart" , (e)=>{
+    
     startX = Math.abs(e.touches[0].clientX);
-    startY = Math.abs(e.touches[0].clientY);   
+    startY = Math.abs(e.touches[0].clientY);
+    newPosX=startX; newPosY=startY;   
+    console.log("start x and y" , startX , startY)
 });
 body.addEventListener("touchend", (e) => {
     endX = Math.abs(e.changedTouches[0].clientX);
@@ -239,13 +242,13 @@ body.addEventListener("touchend", (e) => {
 
     // del value of the touch
     dX = endX-startX;
-    dY = endY-startY; console.log(dX ,dY);
+    dY = endY-startY; 
     
     if (Math.abs(dX) < 20 && Math.abs(dY) < 20) {
     return;
     }
     if (Math.abs(dX)>Math.abs(dY)) {
-    // direction = dX > 0 ? "right" : "left" ;
+  
      if(dX>0){
         if(direction!=="left"){
             direction="right";
@@ -255,7 +258,7 @@ body.addEventListener("touchend", (e) => {
             direction="left";
         }
     } else {
-    // direction = dY > 0 ? "down" : "up";
+
     if(dY>0){
         if(direction!=="up"){
             direction="down";
@@ -268,3 +271,59 @@ body.addEventListener("touchend", (e) => {
     }
 });
 
+; //for relative pos
+body.addEventListener("touchmove" , (e)=>{
+    let currentX=e.changedTouches[0].clientX;
+    let currentY=e.changedTouches[0].clientY;
+    
+    let delx = currentX - newPosX;
+    let dely = currentY - newPosY;
+    
+    let tld=20;//min pixel
+
+    if(Math.abs(delx)<tld&&Math.abs(dely)<tld){
+        return;
+    }
+    else{ 
+        
+        //dely > delx vertical direction 
+        //delx > dely horizontal direction
+        if(Math.abs(delx)>Math.abs(dely)){
+            console.log(`hroizontal direction`);
+                if(delx>0){
+                    if(direction!=="left"){
+                    direction="right";
+                    newPosX=currentX;
+                    newPosY=currentY;
+                }
+
+                }else{
+                    if(direction!=="right"){
+                    direction="left"
+                    newPosX=currentX;
+                    newPosY=currentY;
+                    }
+                }
+        }else{
+            console.log(`verical direction`);
+            if(dely>0){
+                if(direction!=="up"){
+                direction="down";
+                newPosX=currentX;
+                newPosY=currentY;
+                console.log("down")
+                }
+                
+            }else{
+                if(direction!=="down"){
+                direction="up";
+                newPosX=currentX;
+                newPosY=currentY;
+                console.log("up")
+                }
+            }
+        }
+
+
+    }
+});
