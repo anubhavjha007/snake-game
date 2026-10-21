@@ -236,6 +236,8 @@ body.addEventListener("touchstart" , (e)=>{
     newPosX=startX; newPosY=startY;   
     console.log("start x and y" , startX , startY)
 });
+//old swipe controls 
+/*
 body.addEventListener("touchend", (e) => {
     endX = Math.abs(e.changedTouches[0].clientX);
     endY = Math.abs(e.changedTouches[0].clientY);
@@ -270,6 +272,7 @@ body.addEventListener("touchend", (e) => {
     }
     }
 });
+*/
 
 ; //for relative pos
 body.addEventListener("touchmove" , (e)=>{
