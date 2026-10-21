@@ -13,6 +13,14 @@ const body = document.querySelector("body");
 
 const board = document.querySelector(".board");
 
+//musics
+const bgMusic = document.querySelector("#bgMusic");
+const eatSound = document.querySelector("#eatSound");
+const gameOverSound = document.querySelector("#gameOverSound");
+
+bgMusic.currentTime = 0;
+bgMusic.play();
+
 const boxes =[];
 for(let i=1 ; i<=400; i++ ){
     const box= document.createElement("div");
@@ -115,6 +123,9 @@ function gameOver() {
     document.removeEventListener("keydown", upMove);
     clearInterval(motion);
     console.log("GAME OVER");
+    bgMusic.pause();
+    gameOverSound.currentTime = 0;
+    gameOverSound.play();
     gameOverBox.style.display="flex";
     board.style.display="none";
 }
@@ -189,6 +200,8 @@ let motion = setInterval(() => {
 const scoreInc = ()=>{
     if(randIndex==randFood){
         console.log("yayyyy");
+        eatSound.currentTime = 0;
+        eatSound.play();
         food();
         score++;
         finalScore=score-1;
@@ -236,9 +249,7 @@ body.addEventListener("touchstart" , (e)=>{
     newPosX=startX; newPosY=startY;   
     console.log("start x and y" , startX , startY)
 });
-//old swipe controls 
-/*
-body.addEventListener("touchend", (e) => {
+/*body.addEventListener("touchend", (e) => {
     endX = Math.abs(e.changedTouches[0].clientX);
     endY = Math.abs(e.changedTouches[0].clientY);
 
@@ -271,8 +282,7 @@ body.addEventListener("touchend", (e) => {
         }
     }
     }
-});
-*/
+});*/
 
 ; //for relative pos
 body.addEventListener("touchmove" , (e)=>{
