@@ -28,7 +28,7 @@ for(let i=1 ; i<=400; i++ ){
     board.append(box);
     boxes.push(box);
 }
-const bgMusic = document.querySelector("#bgMusic");
+
 let musicStarted = false;
 
 function startMusic() {
