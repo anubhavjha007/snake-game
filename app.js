@@ -28,6 +28,21 @@ for(let i=1 ; i<=400; i++ ){
     board.append(box);
     boxes.push(box);
 }
+const bgMusic = document.querySelector("#bgMusic");
+let musicStarted = false;
+
+function startMusic() {
+    if (musicStarted) return;
+
+    bgMusic.play()
+        .then(() => {
+            musicStarted = true;
+        })
+        .catch(err => console.log(err));
+}
+
+body.addEventListener("touchstart", startMusic);
+document.addEventListener("keydown", startMusic);
 
 let randIndexArr=[];
 let score=1;
